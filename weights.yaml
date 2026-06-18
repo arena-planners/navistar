@@ -1,0 +1,4 @@
+files:
+  - repo: arena-rosnav/navistar
+    filename: 00500.pt
+    dest: model/00500.pt
