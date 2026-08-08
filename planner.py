@@ -18,13 +18,13 @@ mean/var stats, so the trained policy consumes raw observations.
 
 from __future__ import annotations
 
-import importlib.util
 import pathlib
 
 import numpy as np
 import torch
 from arena_planners.sdk import load_manifest, main_loop
 
+from navistar_config import Config
 from star_net import Policy
 
 _HERE = pathlib.Path(__file__).parent
@@ -39,16 +39,9 @@ _VISIBLE_DIS: float = 10.0  # config.robot.visible_dis
 _ABSENT_XY: float = 15.0
 
 
-def _load_config():
-    spec = importlib.util.spec_from_file_location("navistar_config", _MODEL_DIR / "config.py")
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod.Config()
-
-
 class _Runner:
     def __init__(self) -> None:
-        self.config = _load_config()
+        self.config = Config()
         self.human_num = int(self.config.sim.human_num)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
