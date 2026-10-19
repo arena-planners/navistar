@@ -2,3 +2,4 @@ files:
   - repo: arena-rosnav/navistar
     filename: 00500.pt
     dest: model/00500.pt
+    sha256: 12a87d6705779d0cd38e3adc58a6adc82b7673cb0b6aa02c19c78bbbe2b0cc30
